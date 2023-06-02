@@ -6,10 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "table_geofencing")
 data class Geofence(
-    @PrimaryKey var geofenceId : Long,
+    @PrimaryKey(autoGenerate = true) var geofenceId : Long?,
     @ColumnInfo(name = "Area name") var areaName: String,
-    @ColumnInfo(name = "Latitude arey") var latitude: String,
-    @ColumnInfo(name = "Longitude area") var longitude: String,
+    @ColumnInfo(name = "Latitude area") var latitude: Int,
+    @ColumnInfo(name = "Longitude area") var longitude: Int,
 )
-
-

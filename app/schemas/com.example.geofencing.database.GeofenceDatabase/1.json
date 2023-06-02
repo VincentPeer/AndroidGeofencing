@@ -1,0 +1,52 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "62b9423d2bdf9d21e8993caad6d4b811",
+    "entities": [
+      {
+        "tableName": "table_geofencing",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`geofenceId` INTEGER PRIMARY KEY AUTOINCREMENT, `Area name` TEXT NOT NULL, `Latitude area` INTEGER NOT NULL, `Longitude area` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "geofenceId",
+            "columnName": "geofenceId",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "areaName",
+            "columnName": "Area name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "latitude",
+            "columnName": "Latitude area",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "longitude",
+            "columnName": "Longitude area",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "geofenceId"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '62b9423d2bdf9d21e8993caad6d4b811')"
+    ]
+  }
+}

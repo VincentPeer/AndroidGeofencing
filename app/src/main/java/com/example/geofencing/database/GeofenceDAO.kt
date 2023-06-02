@@ -16,6 +16,9 @@ interface GeofenceDAO {
     @Delete
     fun delete(geofence: Geofence)
 
-    @Query("SELECT * FROM Geofence")
+    @Query("SELECT COUNT(*) FROM table_geofencing")
+    fun getCount() : LiveData<Long>
+
+    @Query("SELECT * FROM table_geofencing")
     fun getAllGeofences() : LiveData<List<Geofence>>
 }
