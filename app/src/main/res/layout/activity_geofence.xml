@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toStartOf="@id/geo_alarm_title_value"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Geofencing alarm name"
+        android:text="@string/geo_alarm_name"
         />
 
     <TextView

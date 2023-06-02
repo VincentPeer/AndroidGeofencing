@@ -14,4 +14,5 @@
     <string name="select_the_area_name">Select the area</string>
     <string name="open_map_title">Open map</string>
     <string name="default_name">Default name</string>
+    <string name="geo_alarm_name">Geofencing alarm name</string>
 </resources>
