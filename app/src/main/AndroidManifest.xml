@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".GeofenceApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,13 +13,13 @@
         android:theme="@style/Theme.Geofencing"
         tools:targetApi="31">
         <activity
-            android:name=".GeofenceActivity"
+            android:name=".ui.GeofenceActivity"
             android:exported="false" />
         <activity
-            android:name=".NewGeofenceActivity"
+            android:name=".ui.NewGeofenceActivity"
             android:exported="false" />
         <activity
-            android:name=".MapActivity"
+            android:name=".ui.MapActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

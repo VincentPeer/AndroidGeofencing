@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Geofencing</string>
+    <string name="one_alarm">Alarm</string>
+    <string name="Many_alarm">Alarms</string>
+    <string name="new_alarm_description">Button to create a new alarm</string>
+    <string name="set_alarm">Set alarm</string>
+    <string name="alarm_clock_btn_text">Alarm clock</string>
+    <string name="alarm_geo_btn_text">Geofenced alarm</string>
+    <string name="alarm_choice_title_text">Select an alarm type</string>
+    <string name="alarm_clock_icon_descr">Alarm clock icon</string>
+    <string name="alarm_geo_icon_descr">Alarm geo icon</string>
+    <string name="geo_alarm_name_title">Enter the geo alarm name</string>
+    <string name="save_text_btn">Save</string>
+    <string name="select_the_area_name">Select the area</string>
+    <string name="open_map_title">Open map</string>
+    <string name="default_name">Default name</string>
 </resources>

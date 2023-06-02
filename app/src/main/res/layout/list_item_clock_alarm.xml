@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/icon_list_item_size"
+    android:layout_marginBottom="@dimen/item_padding"
+    android:paddingStart="@dimen/item_padding"
+    android:paddingEnd="@dimen/item_padding"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/alarm_clock_icon"
+        android:layout_width="@dimen/icon_list_item_size"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/clock_alarm_icon"
+        android:contentDescription="@string/alarm_clock_icon_descr" />
+
+
+    <TextView
+        android:id="@+id/item_clock_alarm_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/alarm_clock_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="@dimen/list_item_text_size"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
