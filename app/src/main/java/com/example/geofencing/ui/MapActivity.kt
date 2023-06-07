@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -18,11 +19,13 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
 
-class MapActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClickListener,
+    GoogleMap.OnMapLongClickListener {
 
     private var mMapView: MapView? = null
     private var googleMap: GoogleMap? = null
     private var locationPermissionGranted = false
+    private lateinit var tapTextView: TextView
 
 
     private val MAPVIEW_BUNDLE_KEY = "MapViewBundleKey"
@@ -30,6 +33,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
+
+        tapTextView = findViewById(R.id.tap_text)
 
         // *** IMPORTANT ***
         // MapView requires that the Bundle you pass contain _ONLY_ MapView SDK
@@ -46,6 +51,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(map: GoogleMap) {
         this.googleMap = map
+
+        googleMap?.setOnMapClickListener(this)
+        googleMap?.setOnMapLongClickListener(this)
 
 
         // Prompt the user for permission.
@@ -149,5 +157,16 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onLowMemory() {
         super.onLowMemory()
         mMapView!!.onLowMemory()
+    }
+
+    override fun onMapClick(point: LatLng) {
+        tapTextView.text = "tapped, point=$point"
+        Log.d("MapActivity", "mapClick : $point")
+    }
+
+    override fun onMapLongClick(point: LatLng) {
+        tapTextView.text = "long pressed, point=$point"
+        Log.d("MapActivity", "mapLongClick : $point")
+
     }
 }
