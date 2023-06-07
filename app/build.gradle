@@ -64,5 +64,5 @@ dependencies {
     implementation 'androidx.activity:activity-ktx:1.6.1'
 
     // Services google play
-    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
 }
