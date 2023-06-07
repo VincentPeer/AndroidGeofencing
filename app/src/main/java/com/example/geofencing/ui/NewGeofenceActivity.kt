@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.geofencing.R
-import com.example.geofencing.databinding.ActivityMainBinding
 import com.example.geofencing.databinding.ActivityNewGeofenceBinding
+import com.example.geofencing.model.place.MapsActivityCurrentPlace
 
 class NewGeofenceActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewGeofenceBinding

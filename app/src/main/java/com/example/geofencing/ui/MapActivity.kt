@@ -1,9 +1,16 @@
 package com.example.geofencing.ui
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.geofencing.R
+import com.example.geofencing.model.place.MapsActivityCurrentPlace
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -14,6 +21,9 @@ import com.google.android.gms.maps.model.MarkerOptions
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private var mMapView: MapView? = null
+    private var googleMap: GoogleMap? = null
+    private var locationPermissionGranted = false
+
 
     private val MAPVIEW_BUNDLE_KEY = "MapViewBundleKey"
 
@@ -35,8 +45,71 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
     override fun onMapReady(map: GoogleMap) {
-        map.addMarker(MarkerOptions().position(LatLng(0.0, 0.0)).title("Marker"))
+        this.googleMap = map
+
+
+        // Prompt the user for permission.
+        getLocationPermission()
+        // [END_EXCLUDE]
+
+        // Turn on the My Location layer and the related control on the map.
+        updateLocationUI()
+
+        // Get the current location of the device and set the position of the map.
+        //getDeviceLocation()
+        map.addMarker(MarkerOptions().position(LatLng(46.77, 6.64)).title("Yverdon City"))
     }
+
+
+    /**
+     * Prompts the user for permission to use the device location.
+     */
+    // [START maps_current_place_location_permission]
+    private fun getLocationPermission() {
+        /*
+         * Request location permission, so that we can get the location of the
+         * device. The result of the permission request is handled by a callback,
+         * onRequestPermissionsResult.
+         */
+        if (ContextCompat.checkSelfPermission(this.applicationContext,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+            == PackageManager.PERMISSION_GRANTED) {
+            locationPermissionGranted = true
+        } else {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION
+            )
+        }
+    }
+
+    /**
+     * Updates the map's UI settings based on whether the user has granted location permission.
+     */
+    // [START maps_current_place_update_location_ui]
+    @SuppressLint("MissingPermission")
+    private fun updateLocationUI() {
+        if (googleMap == null) {
+            return
+        }
+        try {
+            if (locationPermissionGranted) {
+                googleMap?.isMyLocationEnabled = true // Adds marker for the user position
+               googleMap?.uiSettings?.isMyLocationButtonEnabled = true // Adds loc button to zoom on user's position
+            } else {
+                googleMap?.isMyLocationEnabled = false
+                googleMap?.uiSettings?.isMyLocationButtonEnabled = false
+                //lastKnownLocation = null
+                getLocationPermission()
+            }
+        } catch (e: SecurityException) {
+            Log.e("Exception: %s", e.message, e)
+        }
+    }
+
+    companion object {
+        private const val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
+    }
+
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
