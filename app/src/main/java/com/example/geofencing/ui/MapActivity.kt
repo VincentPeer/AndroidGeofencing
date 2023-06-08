@@ -2,6 +2,8 @@ package com.example.geofencing.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.PendingIntent
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -17,9 +19,12 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import com.example.geofencing.R
+import com.example.geofencing.model.GeofenceReceiver
 import com.example.geofencing.model.place.MapsActivityCurrentPlace
 import com.example.geofencing.model.place.Place
 import com.google.android.gms.location.Geofence
+import com.google.android.gms.location.GeofencingRequest
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -34,8 +39,11 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
     private var mMapView: MapView? = null
     private var googleMap: GoogleMap? = null
     private val permissionsGranted = MutableLiveData(false)
-    private lateinit var tapTextView: TextView
 
+    val geofencePendingIntent: PendingIntent by lazy {
+        val intent = Intent(this, GeofenceReceiver::class.java)
+        PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
+    }
 
     private val MAPVIEW_BUNDLE_KEY = "MapViewBundleKey"
 
@@ -236,7 +244,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
         val expirationTimeInMillis = 604800000L // one weed
         val notifResponsivnessTimeInMillis = 60_0000 // 60 000 == 1 minutes
         //geofenceList.add
-        Geofence.Builder()
+        val geofence = Geofence.Builder()
             .setRequestId(place.name)
             .setCircularRegion(place.latLng.latitude, place.latLng.longitude, radius)
             .setExpirationDuration(expirationTimeInMillis)
@@ -245,6 +253,36 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
             .build()
 
         Log.d(TAG, "New geofence place added : ${place.name}")
+
+        val geofencingClient = LocationServices.getGeofencingClient(this)
+
+        val geofencingRequest = GeofencingRequest.Builder().apply {
+            setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER)
+            addGeofence(geofence)
+        }.build()
+
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return
+        }
+        geofencingClient.addGeofences(geofencingRequest, geofencePendingIntent).run {
+            addOnFailureListener {
+                // display error
+            }
+            addOnSuccessListener {
+                // move on
+            }
+        }
     }
 
     override fun onMapLongClick(point: LatLng) {
