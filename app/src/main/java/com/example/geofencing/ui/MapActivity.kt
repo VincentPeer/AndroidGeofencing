@@ -3,20 +3,29 @@ package com.example.geofencing.ui
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.MutableLiveData
 import com.example.geofencing.R
 import com.example.geofencing.model.place.MapsActivityCurrentPlace
+import com.example.geofencing.model.place.Place
+import com.google.android.gms.location.Geofence
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.textfield.TextInputLayout
 
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClickListener,
@@ -24,7 +33,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
 
     private var mMapView: MapView? = null
     private var googleMap: GoogleMap? = null
-    private var locationPermissionGranted = false
+    private val permissionsGranted = MutableLiveData(false)
     private lateinit var tapTextView: TextView
 
 
@@ -34,7 +43,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
 
-        tapTextView = findViewById(R.id.tap_text)
+        // we request permissions
+        requestLocationPermissionLauncher.launch(
+            arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION))
+
 
         // *** IMPORTANT ***
         // MapView requires that the Bundle you pass contain _ONLY_ MapView SDK
@@ -57,7 +71,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
 
 
         // Prompt the user for permission.
-        getLocationPermission()
+        // getLocationPermission()
         // [END_EXCLUDE]
 
         // Turn on the My Location layer and the related control on the map.
@@ -79,14 +93,38 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
          * device. The result of the permission request is handled by a callback,
          * onRequestPermissionsResult.
          */
-        if (ContextCompat.checkSelfPermission(this.applicationContext,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-            == PackageManager.PERMISSION_GRANTED) {
-            locationPermissionGranted = true
-        } else {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION
-            )
+//        if (ContextCompat.checkSelfPermission(this.applicationContext,
+//                Manifest.permission.ACCESS_FINE_LOCATION)
+//            == PackageManager.PERMISSION_GRANTED) {
+//            locationPermissionGranted = true
+//        } else {
+//            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+//                PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION
+//            )
+//        }
+    }
+
+    private val requestLocationPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+
+        val isFineLocationGranted = permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false)
+        val isCoarseLocationGranted = permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false)
+//        val isBackgroundLocationGranted =
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+//                permissions.getOrDefault(Manifest.permission.ACCESS_BACKGROUND_LOCATION, false)
+//            else
+//                true
+
+        if (/*isBackgroundLocationGranted && */(isFineLocationGranted || isCoarseLocationGranted)) {
+            // Permission is granted. Continue the action
+            permissionsGranted.postValue(true)
+
+
+
+        }
+        else {
+            // Explain to the user that the feature is unavailable
+            Toast.makeText(this, R.string.permissions_needed_message, Toast.LENGTH_SHORT).show()
+            permissionsGranted.postValue(false)
         }
     }
 
@@ -96,18 +134,22 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
     // [START maps_current_place_update_location_ui]
     @SuppressLint("MissingPermission")
     private fun updateLocationUI() {
+//        var permission : Boolean
+//        permissionsGranted.observe(this) { value ->
+//            permission = value
+//        }
         if (googleMap == null) {
             return
         }
         try {
-            if (locationPermissionGranted) {
+            if (permissionsGranted.value!!) {
                 googleMap?.isMyLocationEnabled = true // Adds marker for the user position
-               googleMap?.uiSettings?.isMyLocationButtonEnabled = true // Adds loc button to zoom on user's position
+                googleMap?.uiSettings?.isMyLocationButtonEnabled = true // Adds loc button to zoom on user's position
             } else {
-                googleMap?.isMyLocationEnabled = false
-                googleMap?.uiSettings?.isMyLocationButtonEnabled = false
+                googleMap?.isMyLocationEnabled = true
+                googleMap?.uiSettings?.isMyLocationButtonEnabled = true
                 //lastKnownLocation = null
-                getLocationPermission()
+                //getLocationPermission()
             }
         } catch (e: SecurityException) {
             Log.e("Exception: %s", e.message, e)
@@ -116,6 +158,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
 
     companion object {
         private const val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
+        private const val TAG = "MapActivity"
     }
 
 
@@ -160,13 +203,52 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
     }
 
     override fun onMapClick(point: LatLng) {
-        tapTextView.text = "tapped, point=$point"
+        newPlace(point)
+
+
         Log.d("MapActivity", "mapClick : $point")
     }
 
+    private fun newPlace(point: LatLng) {
+
+        val taskEditText =  EditText(applicationContext)
+        taskEditText.setBackgroundColor(resources.getColor(R.color.purple_500,null))
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("New geofencing position")
+            .setMessage("Name for this place :")
+            .setView(taskEditText)
+            .setCancelable(false) // dialog cannot be closed without doing a choice
+            .setNegativeButton(android.R.string.cancel) { _,_ ->
+// cancel action
+            }
+            .setPositiveButton(android.R.string.yes) { _,_ ->
+                val newPlace = Place(taskEditText.text.toString(), LatLng(point.latitude, point.longitude), "no description")
+                newGeofencingPlace(newPlace)
+                this.googleMap?.addMarker(MarkerOptions().position(LatLng(point.latitude, point.longitude)).title(taskEditText.text.toString()))
+
+            }
+            .create()
+        dialog.show()
+    }
+
+    private fun newGeofencingPlace(place: Place) {
+        val radius = 100.0f // unit is in meter
+        val expirationTimeInMillis = 604800000L // one weed
+        val notifResponsivnessTimeInMillis = 60_0000 // 60 000 == 1 minutes
+        //geofenceList.add
+        Geofence.Builder()
+            .setRequestId(place.name)
+            .setCircularRegion(place.latLng.latitude, place.latLng.longitude, radius)
+            .setExpirationDuration(expirationTimeInMillis)
+            .setNotificationResponsiveness(notifResponsivnessTimeInMillis)
+            .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER or Geofence.GEOFENCE_TRANSITION_EXIT)
+            .build()
+
+        Log.d(TAG, "New geofence place added : ${place.name}")
+    }
+
     override fun onMapLongClick(point: LatLng) {
-        tapTextView.text = "long pressed, point=$point"
-        Log.d("MapActivity", "mapLongClick : $point")
+        Log.d(TAG, "mapLongClick : $point")
 
     }
 }

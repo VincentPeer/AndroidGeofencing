@@ -21,4 +21,5 @@
     <string name="option_get_place">Get place</string>
     <string name="pick_place">Choose a place</string>
     <string name="tap_instructions">map tapped</string>
+    <string name="permissions_needed_message">Geofencing needs permissions</string>
 </resources>

@@ -6,8 +6,9 @@ import com.google.maps.android.clustering.ClusterItem
 data class Place(
     val name: String,
     val latLng: LatLng,
-    val address: String,
-    val rating: Float
+    val description: String
+//    val address: String,
+//    val rating: Float
 ) : ClusterItem {
     override fun getPosition(): LatLng =
         latLng
@@ -16,5 +17,5 @@ data class Place(
         name
 
     override fun getSnippet(): String =
-        address
+        description
 }
