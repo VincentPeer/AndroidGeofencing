@@ -1,6 +1,7 @@
 package com.example.geofencing.ui
 
 import android.Manifest
+import android.app.Application
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -12,18 +13,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.geofencing.R
 import com.example.geofencing.database.Repository
+import com.example.geofencing.model.GeofenceConverter
 import com.example.geofencing.model.GeofenceReceiver
+import com.example.geofencing.model.MyGeofence
 import com.google.android.gms.location.Geofence
 import com.google.android.gms.location.GeofencingRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
 
 
-class GeofenceViewModel(private val repository: Repository, private val context: Context) : ViewModel() {
+class GeofenceViewModel(private val application: Application, private val repository: Repository) : ViewModel() {
     val allGeofence = repository.allGeofences
     private val geofencePendingIntent: PendingIntent by lazy {
-        val intent = Intent(context, GeofenceReceiver::class.java)
-        PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
+        val intent = Intent(application.applicationContext, GeofenceReceiver::class.java)
+        PendingIntent.getBroadcast(application.applicationContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
     }
 
 
@@ -40,15 +43,18 @@ class GeofenceViewModel(private val repository: Repository, private val context:
             .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER or Geofence.GEOFENCE_TRANSITION_EXIT)
             .build()
 
-        val geofencingClient = LocationServices.getGeofencingClient(context)
+        val geofencingClient = LocationServices.getGeofencingClient(application.applicationContext)
 
         val geofencingRequest = GeofencingRequest.Builder().apply {
             setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER)
             addGeofence(geofence)
         }.build()
 
+        val myGeofence = GeofenceConverter.locationGeofenceToGeofence(geofence)
+        repository.insertGeofence(myGeofence)
+
         if (ActivityCompat.checkSelfPermission(
-                context,
+                application.applicationContext,
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
@@ -74,10 +80,10 @@ class GeofenceViewModel(private val repository: Repository, private val context:
 
 }
 
-class GeofenceViewModelFactory(private val repository: Repository, private val context: Context) : ViewModelProvider.Factory {
+class GeofenceViewModelFactory(private val repository: Repository, private val application: Application) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(GeofenceViewModel::class.java)) {
-            return GeofenceViewModel(repository, context) as T
+            return GeofenceViewModel(application, repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

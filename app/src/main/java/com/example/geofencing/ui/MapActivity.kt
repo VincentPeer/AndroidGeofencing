@@ -28,7 +28,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
     private var googleMap: GoogleMap? = null
     private val permissionsGranted = MutableLiveData(false)
     private val viewModels: GeofenceViewModel by viewModels {
-        GeofenceViewModelFactory((application as GeofenceApp).repository, this)
+        GeofenceViewModelFactory(application = application,
+            repository = (application as GeofenceApp).repository
+        )
     }
 
 
@@ -45,6 +47,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
             arrayOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION))
+
+
 
 
         // *** IMPORTANT ***
@@ -76,6 +80,14 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
 
         // Get the current location of the device and set the position of the map.
         //getDeviceLocation()
+        viewModels.allGeofence.observe(this) { geofences ->
+            // Update the cached copy of the words in the adapter.
+            for (geofence in geofences) {
+                map.addMarker(MarkerOptions()
+                    .position(LatLng(geofence.latitude, geofence.longitude))
+                    .title(geofence.areaName))
+            }
+        }
         map.addMarker(MarkerOptions().position(LatLng(46.77, 6.64)).title("Yverdon City"))
     }
 
@@ -223,6 +235,5 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
 
     override fun onMapLongClick(point: LatLng) {
         Log.d(TAG, "mapLongClick : $point")
-
     }
 }

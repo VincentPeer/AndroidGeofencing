@@ -12,15 +12,15 @@ import com.example.geofencing.ui.NewGeofenceActivity
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val geofenceViewModel: GeofenceViewModel by viewModels {
-        GeofenceViewModelFactory((application as GeofenceApp).repository, applicationContext)
+        GeofenceViewModelFactory((application as GeofenceApp).repository, application)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        geofenceViewModel.allGeofence.observe(this) { geofences ->
-            // Update the cached copy of the words in the adapter.
-            geofences.let { geofenceViewModel.allGeofence.value }
-        }
+//        geofenceViewModel.allGeofence.observe(this) { geofences ->
+//            // Update the cached copy of the words in the adapter.
+//            geofences.let { geofenceViewModel.allGeofence.value }
+//        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

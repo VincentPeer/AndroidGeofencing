@@ -5,11 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.geofencing.model.Geofence
+import com.example.geofencing.model.MyGeofence
 import kotlin.concurrent.thread
 
-@Database(entities = [Geofence::class],
-    version = 1,
+@Database(entities = [MyGeofence::class],
+    version = 2,
     exportSchema = true)
 abstract class GeofenceDatabase : RoomDatabase() {
 
@@ -41,9 +41,9 @@ abstract class GeofenceDatabase : RoomDatabase() {
                         // when the database is created for the 1st time, we can, for example, populate it
                         // should be done asynchronously
                         val dao = database.geofenceDao()
-                        for (i in 0..10) {
-                            dao.insert(Geofence(null, "home", 0, 0))
-                        }
+//                        for (i in 0..10) {
+//                            dao.insert(Geofence(null, "home", 0, 0))
+//                        }
                     }
                 }
             }

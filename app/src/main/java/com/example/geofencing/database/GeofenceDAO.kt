@@ -2,23 +2,23 @@ package com.example.geofencing.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.geofencing.model.Geofence
+import com.example.geofencing.model.MyGeofence
 
 @Dao
 interface GeofenceDAO {
 
     @Insert
-    fun insert(geofence: Geofence): Long
+    fun insert(myGeofence: MyGeofence): Long
 
     @Update
-    fun update(geofence: Geofence)
+    fun update(myGeofence: MyGeofence)
 
     @Delete
-    fun delete(geofence: Geofence)
+    fun delete(myGeofence: MyGeofence)
 
     @Query("SELECT COUNT(*) FROM table_geofencing")
     fun getCount() : LiveData<Long>
 
     @Query("SELECT * FROM table_geofencing")
-    fun getAllGeofences() : LiveData<List<Geofence>>
+    fun getAllGeofences() : LiveData<List<MyGeofence>>
 }
