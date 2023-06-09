@@ -22,4 +22,6 @@
     <string name="pick_place">Choose a place</string>
     <string name="tap_instructions">map tapped</string>
     <string name="permissions_needed_message">Geofencing needs permissions</string>
+    <string name="channel_name">geofenceChannelNotification</string>
+    <string name="channel_description">Notify the user when a place is reach</string>
 </resources>
