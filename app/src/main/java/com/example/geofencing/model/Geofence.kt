@@ -3,6 +3,7 @@ package com.example.geofencing.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.android.gms.location.Geofence
 
 @Entity(tableName = "table_geofencing")
 data class Geofence(

@@ -30,9 +30,6 @@
             android:name=".ui.GeofenceActivity"
             android:exported="false" />
         <activity
-            android:name=".model.place.MapsActivityCurrentPlace"
-            android:exported="false" />
-        <activity
             android:name=".ui.NewGeofenceActivity"
             android:exported="false" />
         <activity

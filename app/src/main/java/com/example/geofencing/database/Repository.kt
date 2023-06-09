@@ -1,5 +1,7 @@
 package com.example.geofencing.database
 
-class Repository(private val geofenceDAO: GeofenceDAO) {
+import kotlinx.coroutines.CoroutineScope
+
+class Repository(geofenceDAO: GeofenceDAO, private val scope: CoroutineScope) {
     val allGeofences = geofenceDAO.getAllGeofences()
 }

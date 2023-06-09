@@ -12,6 +12,6 @@ class GeofenceApp : Application() {
 
     val repository by lazy {
         val database = GeofenceDatabase.getDatabase(this)
-        Repository(database.geofenceDao())
+        Repository(database.geofenceDao(), applicationScope)
     }
 }
