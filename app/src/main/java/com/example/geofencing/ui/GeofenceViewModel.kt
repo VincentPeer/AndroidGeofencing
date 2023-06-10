@@ -24,10 +24,40 @@ import com.google.android.gms.maps.model.LatLng
 
 class GeofenceViewModel(private val application: Application, private val repository: Repository) : ViewModel() {
     val allGeofence = repository.allGeofences
+    val counts = repository.counts
+
     private val geofencePendingIntent: PendingIntent by lazy {
         val intent = Intent(application.applicationContext, GeofenceReceiver::class.java)
         PendingIntent.getBroadcast(application.applicationContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
     }
+
+
+    fun insertGeofence(geofence: MyGeofence) {
+        repository.insertGeofence(geofence)
+    }
+
+    fun updateGeofence(myGeofence: MyGeofence) {
+        repository.updateGeofence(myGeofence)
+    }
+
+    fun deleteGeofence(myGeofence: MyGeofence) {
+        repository.deleteGeofence(myGeofence)
+    }
+
+    fun insertAllGeofence(myGeofences: List<MyGeofence>) {
+        repository.insertAllGeofence(myGeofences)
+    }
+
+    fun deleteAllGeofence() {
+        repository.deleteAllGeofence()
+    }
+
+    fun initGeofenceList() {
+        insertAllGeofence(listOf(MyGeofence(null, "Home", 46.540555865486326, 6.811297206581053),
+            MyGeofence(null, "HEIG-VD", 46.77971564252356, 6.659400234625911),
+            MyGeofence(null, "Montanaire", 46.666853374054355, 6.7341835731331035)))
+    }
+
 
 
     fun newGeofence(title: String, latLng: LatLng) {

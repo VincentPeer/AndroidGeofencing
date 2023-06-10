@@ -10,13 +10,13 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/alarm_clock_icon"
+        android:id="@+id/location_icon"
         android:layout_width="@dimen/icon_list_item_size"
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/clock_alarm_icon"
+        android:src="@drawable/location_icon"
         android:contentDescription="@string/alarm_clock_icon_descr" />
 
 
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/alarm_clock_icon"
+        app:layout_constraintStart_toEndOf="@id/location_icon"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="@dimen/list_item_text_size"
         />

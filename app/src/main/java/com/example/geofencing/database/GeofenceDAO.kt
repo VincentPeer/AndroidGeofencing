@@ -21,4 +21,10 @@ interface GeofenceDAO {
 
     @Query("SELECT * FROM table_geofencing")
     fun getAllGeofences() : LiveData<List<MyGeofence>>
+
+    @Insert
+    fun insertAll(vararg geofence: MyGeofence)
+
+    @Query("DELETE FROM table_geofencing")
+    fun deleteAll()
 }

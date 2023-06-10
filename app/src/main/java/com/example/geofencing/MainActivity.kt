@@ -25,13 +25,13 @@ class MainActivity : AppCompatActivity() {
 
         val recycler = binding.recycleView
         val adapter = RecyclerAdapter()
+
         recycler.adapter = adapter
         recycler.layoutManager = LinearLayoutManager(this)
-        adapter.items = listOf(MyGeofence(null, "Home", 46.540555865486326, 6.811297206581053),
-        MyGeofence(null, "HEIG-VD", 46.77971564252356, 6.659400234625911),
-        MyGeofence(null, "Montanaire", 46.666853374054355, 6.7341835731331035))
 
-
+        geofenceViewModel.allGeofence.observe(this) {
+            adapter.items = it
+        }
 
         binding.createAlarm.setOnClickListener {
             startActivity(Intent(this, NewGeofenceActivity::class.java))
