@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.geofencing.databinding.ActivityMainBinding
 import com.example.geofencing.model.MyGeofence
 import com.example.geofencing.ui.GeofenceViewModel
 import com.example.geofencing.ui.NewGeofenceActivity
 import com.example.geofencing.ui.RecyclerAdapter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -24,18 +27,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val recycler = binding.recycleView
-        val adapter = RecyclerAdapter()
+        val adapter = RecyclerAdapter(viewModel = geofenceViewModel)
 
         recycler.adapter = adapter
         recycler.layoutManager = LinearLayoutManager(this)
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            geofenceViewModel.deleteAllGeofence()
+            Thread.sleep(500)
+            geofenceViewModel.initGeofenceList()
+        }
 
         geofenceViewModel.allGeofence.observe(this) {
             adapter.items = it
         }
 
-        binding.createAlarm.setOnClickListener {
+        binding.addGeofenceBtn.setOnClickListener {
             startActivity(Intent(this, NewGeofenceActivity::class.java))
         }
     }
-
 }

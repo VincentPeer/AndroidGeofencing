@@ -6,6 +6,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
@@ -20,6 +21,7 @@ import com.google.android.gms.location.Geofence
 import com.google.android.gms.location.GeofencingRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.LatLng
+import java.util.*
 
 
 class GeofenceViewModel(private val application: Application, private val repository: Repository) : ViewModel() {
@@ -54,8 +56,16 @@ class GeofenceViewModel(private val application: Application, private val reposi
 
     fun initGeofenceList() {
         insertAllGeofence(listOf(MyGeofence(null, "Home", 46.540555865486326, 6.811297206581053),
-            MyGeofence(null, "HEIG-VD", 46.77971564252356, 6.659400234625911),
-            MyGeofence(null, "Montanaire", 46.666853374054355, 6.7341835731331035)))
+            MyGeofence(null, "HEIG-VD Cheseaux", 46.77971564252356, 6.659400234625911),
+            MyGeofence(null, "Montanaire", 46.666853374054355, 6.7341835731331035),
+            MyGeofence(null, "Moudon", 46.670322327394, 6.7967575165610095),
+            MyGeofence(null, "Pomy", 46.75971989051159, 6.666860456577413),
+            MyGeofence(null, "Grandson", 46.80937094525385, 6.645798898475956),
+            MyGeofence(null, "Yverdon - Denner", 46.777221780985634, 6.651756017675142),
+            MyGeofence(null, "HEIG-VD St Roch", 46.781752416492004, 6.647190077713865),
+            MyGeofence(null, "Lamai Thai Food", 46.77847981351364, 6.65411084930997),
+            MyGeofence(null, "Plage d'Yverdon", 46.78501389798879, 6.652649941251356),
+        ))
     }
 
 
@@ -105,6 +115,14 @@ class GeofenceViewModel(private val application: Application, private val reposi
                 // move on
             }
         }
+    }
+
+    fun getAdressFromLatLng(latLng: LatLng): String? {
+        val geocoder = Geocoder(application.applicationContext, Locale.getDefault());
+
+        val addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
+
+        return addresses?.get(0)?.getAddressLine(0)
     }
 
 

@@ -34,8 +34,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
     }
 
 
-
-
     private val MAPVIEW_BUNDLE_KEY = "MapViewBundleKey"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,7 +74,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
 
         // Turn on the My Location layer and the related control on the map.
         updateLocationUI()
-
         // Get the current location of the device and set the position of the map.
         //getDeviceLocation()
         viewModels.allGeofence.observe(this) { geofences ->
@@ -87,7 +84,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
                     .title(geofence.areaName))
             }
         }
-        map.addMarker(MarkerOptions().position(LatLng(46.77, 6.64)).title("Yverdon City"))
     }
 
 
@@ -164,13 +160,35 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
         }
     }
 
+    override fun onMapClick(point: LatLng) {
+        val taskEditText =  EditText(applicationContext)
+        taskEditText.setBackgroundColor(resources.getColor(R.color.purple_500,null))
+
+        val dialog = AlertDialog.Builder(this)
+            .setTitle("New geofencing position")
+            .setMessage("Name for this place :")
+            .setView(taskEditText)
+            .setCancelable(false) // dialog cannot be closed without doing a choice
+            .setNegativeButton(android.R.string.cancel) { _,_ ->
+                // cancel action
+            }
+            .setPositiveButton(android.R.string.yes) { _,_ ->
+                viewModels.newGeofence(taskEditText.text.toString(), LatLng(point.latitude, point.longitude))
+                this.googleMap?.addMarker(MarkerOptions().position(LatLng(point.latitude, point.longitude)).title(taskEditText.text.toString()))
+            }
+            .create()
+        dialog.show()
+
+        Log.d("MapActivity", "mapClick : $point")
+    }
+
     companion object {
         private const val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
         private const val TAG = "MapActivity"
     }
 
 
-    override fun onSaveInstanceState(outState: Bundle) {
+    override fun onSaveInstanceState(outState: Bundle) { // todo voir si nécessaire
         super.onSaveInstanceState(outState)
         var mapViewBundle = outState.getBundle(MAPVIEW_BUNDLE_KEY)
         if (mapViewBundle == null) {
@@ -210,29 +228,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
         mMapView!!.onLowMemory()
     }
 
-    override fun onMapClick(point: LatLng) {
-        val taskEditText =  EditText(applicationContext)
-        taskEditText.setBackgroundColor(resources.getColor(R.color.purple_500,null))
-
-        val dialog = AlertDialog.Builder(this)
-            .setTitle("New geofencing position")
-            .setMessage("Name for this place :")
-            .setView(taskEditText)
-            .setCancelable(false) // dialog cannot be closed without doing a choice
-            .setNegativeButton(android.R.string.cancel) { _,_ ->
-                // cancel action
-            }
-            .setPositiveButton(android.R.string.yes) { _,_ ->
-                viewModels.newGeofence(taskEditText.text.toString(), LatLng(point.latitude, point.longitude))
-                this.googleMap?.addMarker(MarkerOptions().position(LatLng(point.latitude, point.longitude)).title(taskEditText.text.toString()))
-            }
-            .create()
-        dialog.show()
-
-        Log.d("MapActivity", "mapClick : $point")
-    }
-
     override fun onMapLongClick(point: LatLng) {
-        Log.d(TAG, "mapLongClick : $point")
+        Log.d(TAG, "mapLongClick at position ($point)")
     }
 }

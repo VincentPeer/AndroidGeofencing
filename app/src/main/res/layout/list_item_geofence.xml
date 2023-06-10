@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/icon_list_item_size"
-    android:layout_marginBottom="@dimen/item_padding"
+    android:layout_height="@dimen/list_item_height"
     android:paddingStart="@dimen/item_padding"
     android:paddingEnd="@dimen/item_padding"
+
     tools:context=".MainActivity">
 
     <ImageView
@@ -25,10 +25,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/location_icon"
+        android:textSize="@dimen/list_item_text_title"
+        android:text="Title"
+        />
+
+    <TextView
+        android:id="@+id/item_geofence_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/item_geofence_title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/location_icon"
-        app:layout_constraintEnd_toEndOf="parent"
         android:textSize="@dimen/list_item_text_size"
+        android:text="Adress"
         />
+
+    <ImageButton
+        android:id="@+id/delete_icon"
+        android:layout_width="@dimen/icon_btn_item_size"
+        android:layout_height="@dimen/icon_btn_item_size"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/delete_icon"
+        android:contentDescription="@string/alarm_clock_icon_descr" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
