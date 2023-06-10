@@ -78,14 +78,16 @@ class GeofenceViewModel(private val application: Application, private val reposi
     }
 
 
-}
-
-class GeofenceViewModelFactory(private val repository: Repository, private val application: Application) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if(modelClass.isAssignableFrom(GeofenceViewModel::class.java)) {
-            return GeofenceViewModel(application, repository) as T
+    class GeofenceViewModelFactory(private val repository: Repository, private val application: Application) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if(modelClass.isAssignableFrom(GeofenceViewModel::class.java)) {
+                return GeofenceViewModel(application, repository) as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel class")
         }
-        throw IllegalArgumentException("Unknown ViewModel class")
+
     }
 
 }
+
+

@@ -21,7 +21,7 @@
 
 
     <TextView
-        android:id="@+id/item_clock_alarm_name"
+        android:id="@+id/item_geofence_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"

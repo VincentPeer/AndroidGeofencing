@@ -28,7 +28,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
     private var googleMap: GoogleMap? = null
     private val permissionsGranted = MutableLiveData(false)
     private val viewModels: GeofenceViewModel by viewModels {
-        GeofenceViewModelFactory(application = application,
+        GeofenceViewModel.GeofenceViewModelFactory(application = application,
             repository = (application as GeofenceApp).repository
         )
     }
