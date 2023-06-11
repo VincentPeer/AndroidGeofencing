@@ -52,10 +52,8 @@ class GeofenceViewModel(private val application: Application, private val reposi
 
     fun initGeofenceList() {
         insertAllGeofence(listOf(
-            MyGeofence(null, "Home", 46.540555865486326, 6.811297206581053),
             MyGeofence(null, "HEIG-VD Cheseaux", 46.77971564252356, 6.659400234625911),
             MyGeofence(null, "Montanaire", 46.666853374054355, 6.7341835731331035),
-            MyGeofence(null, "Moudon", 46.670322327394, 6.7967575165610095),
             MyGeofence(null, "Pomy", 46.75971989051159, 6.666860456577413),
             MyGeofence(null, "Grandson", 46.80937094525385, 6.645798898475956),
             MyGeofence(null, "Yverdon - Denner", 46.777221780985634, 6.651756017675142),
