@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launch(Dispatchers.IO) {
             geofenceViewModel.deleteAllGeofence()
-            Thread.sleep(500)
+            Thread.sleep(100)
             geofenceViewModel.initGeofenceList()
         }
 

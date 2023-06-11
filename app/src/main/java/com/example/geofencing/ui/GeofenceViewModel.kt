@@ -3,16 +3,12 @@ package com.example.geofencing.ui
 import android.Manifest
 import android.app.Application
 import android.app.PendingIntent
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
-import android.widget.EditText
-import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.geofencing.R
 import com.example.geofencing.database.Repository
 import com.example.geofencing.model.GeofenceConverter
 import com.example.geofencing.model.GeofenceReceiver
@@ -55,7 +51,8 @@ class GeofenceViewModel(private val application: Application, private val reposi
     }
 
     fun initGeofenceList() {
-        insertAllGeofence(listOf(MyGeofence(null, "Home", 46.540555865486326, 6.811297206581053),
+        insertAllGeofence(listOf(
+            MyGeofence(null, "Home", 46.540555865486326, 6.811297206581053),
             MyGeofence(null, "HEIG-VD Cheseaux", 46.77971564252356, 6.659400234625911),
             MyGeofence(null, "Montanaire", 46.666853374054355, 6.7341835731331035),
             MyGeofence(null, "Moudon", 46.670322327394, 6.7967575165610095),
@@ -117,12 +114,10 @@ class GeofenceViewModel(private val application: Application, private val reposi
         }
     }
 
-    fun getAdressFromLatLng(latLng: LatLng): String? {
+    fun getAddressFromLatLng(latLng: LatLng): String? {
         val geocoder = Geocoder(application.applicationContext, Locale.getDefault());
-
         val addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
-
-        return addresses?.get(0)?.getAddressLine(0)
+        return addresses!![0].getAddressLine(0)
     }
 
 
