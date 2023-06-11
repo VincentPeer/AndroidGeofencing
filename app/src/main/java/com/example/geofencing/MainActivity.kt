@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setHomeButtonEnabled(true)
+
         val recycler = binding.recycleView
         val adapter = RecyclerAdapter(viewModel = geofenceViewModel)
 

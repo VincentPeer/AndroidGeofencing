@@ -25,4 +25,5 @@
     <string name="channel_name">geofenceChannelNotification</string>
     <string name="channel_description">Notify the user when a place is reach</string>
     <string name="geofence_name_input">Geofence name</string>
+    <string name="done_button">Done button</string>
 </resources>
