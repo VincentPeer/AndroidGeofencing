@@ -7,12 +7,12 @@
     <string name="alarm_clock_btn_text">Alarm clock</string>
     <string name="alarm_geo_btn_text">Geofenced alarm</string>
     <string name="alarm_choice_title_text">Select an alarm type</string>
-    <string name="alarm_clock_icon_descr">Alarm clock icon</string>
+    <string name="geofence_icon_descr">Geofence icon</string>
     <string name="alarm_geo_icon_descr">Alarm geo icon</string>
-    <string name="geo_alarm_name_title">Enter the geo alarm name</string>
+    <string name="new_geofence_title">New Geofencing place</string>
     <string name="save_text_btn">Save</string>
     <string name="select_the_area_name">Select the area</string>
-    <string name="open_map_title">Open map</string>
+    <string name="select_pos_btn">Select a location</string>
     <string name="default_name">Default name</string>
     <string name="geo_alarm_name">Geofencing alarm name</string>
     <string name="title_activity_maps">Current Place Details</string>
@@ -24,4 +24,5 @@
     <string name="permissions_needed_message">Geofencing needs permissions</string>
     <string name="channel_name">geofenceChannelNotification</string>
     <string name="channel_description">Notify the user when a place is reach</string>
+    <string name="geofence_name_input">Geofence name</string>
 </resources>

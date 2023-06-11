@@ -7,42 +7,54 @@
     tools:context=".ui.NewGeofenceActivity">
 
     <TextView
-        android:id="@+id/geo_alarm_title"
+        android:id="@+id/geofence_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/geo_alarm_title_input"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="@string/geo_alarm_name_title"
+        app:layout_constraintBottom_toTopOf="@id/geofence_title_input"
+        android:text="@string/new_geofence_title"
+        android:textSize="@dimen/list_item_text_title"
         />
 
     <EditText
-        android:id="@+id/geo_alarm_title_input"
+        android:id="@+id/geofence_title_input"
         android:layout_width="@dimen/edit_text_width"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/geo_alarm_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:inputType="text" /> <!-- TODO -->
-
-    <Button
-        android:id="@+id/open_map_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/geo_alarm_title"
+        android:layout_height="@dimen/edit_text_standard_min_height"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/geofence_title"
+        app:layout_constraintBottom_toTopOf="@+id/select_position_btn"
+        android:inputType="text"
+        android:hint="@string/geofence_name_input"/>
+
+    <Button
+        android:id="@+id/select_position_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/geofence_title_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/location_info"
+        android:text="@string/select_pos_btn"
+        />
+
+    <TextView
+        android:id="@+id/location_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/select_position_btn"
         app:layout_constraintBottom_toTopOf="@id/save_btn"
-        android:text="@string/open_map_title"
         />
 
     <Button
         android:id="@+id/save_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/open_map_btn"
+        app:layout_constraintTop_toBottomOf="@+id/select_position_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

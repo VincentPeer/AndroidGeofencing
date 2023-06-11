@@ -10,6 +10,7 @@
     <dimen name="item_padding">10dp</dimen>
     <dimen name="new_alarm_btn_size">72dp</dimen>
     <dimen name="edit_text_width">200dp</dimen>
+    <dimen name="edit_text_standard_min_height">48dp</dimen>
     <dimen name="pop_up_width">19dp</dimen>
 
 

@@ -26,7 +26,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:src="@drawable/location_icon"
-        android:contentDescription="@string/alarm_clock_icon_descr" />
+        android:contentDescription="@string/geofence_icon_descr" />
 
 
     <TextView
@@ -61,6 +61,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:src="@drawable/delete_icon"
-        android:contentDescription="@string/alarm_clock_icon_descr" />
+        android:contentDescription="@string/geofence_icon_descr" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
