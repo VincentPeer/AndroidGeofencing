@@ -106,43 +106,15 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
     }
 
 
-    /**
-     * Prompts the user for permission to use the device location.
-     */
-    // [START maps_current_place_location_permission]
-    private fun getLocationPermission() {
-        /*
-         * Request location permission, so that we can get the location of the
-         * device. The result of the permission request is handled by a callback,
-         * onRequestPermissionsResult.
-         */
-//        if (ContextCompat.checkSelfPermission(this.applicationContext,
-//                Manifest.permission.ACCESS_FINE_LOCATION)
-//            == PackageManager.PERMISSION_GRANTED) {
-//            locationPermissionGranted = true
-//        } else {
-//            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-//                PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION
-//            )
-//        }
-    }
-
     private val requestLocationPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
 
         val isFineLocationGranted = permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false)
         val isCoarseLocationGranted = permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false)
-//        val isBackgroundLocationGranted =
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
-//                permissions.getOrDefault(Manifest.permission.ACCESS_BACKGROUND_LOCATION, false)
-//            else
-//                true
 
-        if (/*isBackgroundLocationGranted && */(isFineLocationGranted || isCoarseLocationGranted)) {
+
+        if (isFineLocationGranted || isCoarseLocationGranted) {
             // Permission is granted. Continue the action
             permissionsGranted.postValue(true)
-
-
-
         }
         else {
             // Explain to the user that the feature is unavailable
@@ -157,10 +129,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
     // [START maps_current_place_update_location_ui]
     @SuppressLint("MissingPermission")
     private fun updateLocationUI() {
-//        var permission : Boolean
-//        permissionsGranted.observe(this) { value ->
-//            permission = value
-//        }
         if (googleMap == null) {
             return
         }
@@ -206,16 +174,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
         private const val TAG = "MapActivity"
     }
 
-
-    override fun onSaveInstanceState(outState: Bundle) { // todo voir si nécessaire
-        super.onSaveInstanceState(outState)
-        var mapViewBundle = outState.getBundle(MAPVIEW_BUNDLE_KEY)
-        if (mapViewBundle == null) {
-            mapViewBundle = Bundle()
-            outState.putBundle(MAPVIEW_BUNDLE_KEY, mapViewBundle)
-        }
-        mMapView?.onSaveInstanceState(mapViewBundle)
-    }
 
     override fun onResume() {
         super.onResume()
