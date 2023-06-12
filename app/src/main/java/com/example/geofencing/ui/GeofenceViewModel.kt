@@ -3,7 +3,7 @@
  * @author      : Dimitri De Bleser, Vincent Peer
  * Date         : 12th june 2023
  * File         : GeofenceViewModel
- * Description  : Interactions between the repository and the activities.
+ * Description  : Contains interactions between the repository and the activities.
  */
 
 package com.example.geofencing.ui
@@ -14,8 +14,7 @@ import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
-import android.os.Build
-import androidx.annotation.RequiresApi
+import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -33,9 +32,9 @@ import java.util.*
 /**
  * Manages interactions between the repository and the activities.
  */
-@RequiresApi(Build.VERSION_CODES.S)
 class GeofenceViewModel(private val application: Application, private val repository: Repository) : ViewModel() {
     val allGeofence = repository.allGeofences
+    private val geofencingClient = LocationServices.getGeofencingClient(application.applicationContext)
 
     private val geofencePendingIntent: PendingIntent by lazy {
         val intent = Intent(application.applicationContext, GeofenceReceiver::class.java)
@@ -43,6 +42,7 @@ class GeofenceViewModel(private val application: Application, private val reposi
     }
 
     companion object {
+        private const val TAG = "GeofenceViewModel"
         private const val GEOFENCE_RADIUS = 100.0f // Circle radius in meter
         private const val EXPIRATION_TIME_IN_MILLIS = 604_800_000L // One week
         private const val NOTIFICATION_RESPONSIVENESS_TIME_IN_MILLIS = 60_0000 // 60 000 == 1 minute
@@ -59,6 +59,7 @@ class GeofenceViewModel(private val application: Application, private val reposi
 
     fun deleteGeofence(myGeofence: MyGeofence) {
         repository.deleteGeofence(myGeofence)
+        removeGeofence(myGeofence.areaName)
     }
 
     fun insertAllGeofence(myGeofences: List<MyGeofence>) {
@@ -86,7 +87,8 @@ class GeofenceViewModel(private val application: Application, private val reposi
     }
 
     /**
-     *
+     * Create a new geofence by asking the system to look after a circular area. The system has to
+     * notify this app if the position is inside this area.
      */
     fun newGeofence(title: String, latLng: LatLng) {
         val geofence = Geofence.Builder()
@@ -97,7 +99,7 @@ class GeofenceViewModel(private val application: Application, private val reposi
             .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER or Geofence.GEOFENCE_TRANSITION_EXIT)
             .build()
 
-        val geofencingClient = LocationServices.getGeofencingClient(application.applicationContext)
+        //val geofencingClient = LocationServices.getGeofencingClient(application.applicationContext)
 
         val geofencingRequest = GeofencingRequest.Builder().apply {
             setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER)
@@ -105,32 +107,45 @@ class GeofenceViewModel(private val application: Application, private val reposi
         }.build()
 
         val myGeofence = GeofenceConverter.locationGeofenceToGeofence(geofence)
-        repository.insertGeofence(myGeofence)
+        insertGeofence(myGeofence)
 
         if (ActivityCompat.checkSelfPermission(
                 application.applicationContext,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+        )
             return
-        }
+
         geofencingClient.addGeofences(geofencingRequest, geofencePendingIntent).run {
-            addOnFailureListener {
-                // display error
-            }
             addOnSuccessListener {
-                // move on
+                // Geofences added
+                Log.d(TAG, "Geofence successfully added")
+            }
+            addOnFailureListener {
+                // Failed to add geofences
+                Log.d(TAG, "Geofence failed to be added")
             }
         }
     }
 
+    /**
+     * Ask the system to remove a geofence with a specified requestId
+     */
+    private fun removeGeofence(requestId: String) {
+        geofencingClient.removeGeofences(listOf(requestId)).run {
+            addOnSuccessListener {
+                // Geofences removed
+                Log.d(TAG, "Geofence $requestId successfully removed")
+            }
+            addOnFailureListener {
+                // Failed to remove geofences
+                Log.d(TAG, "Geofence $requestId failed to be removed")
+            }
+        }
+    }
+
+    /**
+     * Return the address of a given coordinate
+     */
     fun getAddressFromLatLng(latLng: LatLng): String? {
         val geocoder = Geocoder(application.applicationContext, Locale.getDefault());
         val addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)

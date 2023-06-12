@@ -1,3 +1,11 @@
+/**
+ * HEIV-VD DMA Geofencing project
+ * @author      : Dimitri De Bleser, Vincent Peer
+ * Date         : 12th june 2023
+ * File         : MapActivity
+ * Description  : Manages the map view and the actions between the user and the map.
+ */
+
 package com.example.geofencing.ui
 
 import android.Manifest
@@ -29,7 +37,6 @@ import com.google.android.gms.maps.model.MarkerOptions
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClickListener,
     GoogleMap.OnMapLongClickListener {
-
     private var mMapView: MapView? = null
     private var googleMap: GoogleMap? = null
     private val permissionsGranted = MutableLiveData(false)
@@ -115,9 +122,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
         )
         map.moveCamera(CameraUpdateFactory.newLatLngBounds(westernSwitzerlandBounds, 0))
 
+        // Adds features to the map
         updateLocationUI()
 
-
+        // Observes each geofence to mark them on the map
         viewModels.allGeofence.observe(this) { geofences ->
             // Add a marker on the map
             for (geofence in geofences) {
@@ -135,20 +143,19 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
      */
     @SuppressLint("MissingPermission")
     private fun updateLocationUI() {
-        if (googleMap == null) {
+        if (googleMap == null)
             return
-        }
 
-        if (permissionsGranted.value!!) {
-            googleMap?.isMyLocationEnabled = true // Adds marker for the user position
-            googleMap?.uiSettings?.isMyLocationButtonEnabled = true // Adds loc button to zoom on user's position
-        }
+        // Adds marker for the user position
+        googleMap?.isMyLocationEnabled = true
+        // Adds location button to zoom on user's position
+        googleMap?.uiSettings?.isMyLocationButtonEnabled = true
     }
 
 
     override fun onMapClick(point: LatLng) {
         val taskEditText =  EditText(applicationContext)
-        taskEditText.setBackgroundColor(resources.getColor(R.color.purple_500,null))
+        taskEditText.setBackgroundColor(resources.getColor(R.color.gray,null))
 
         val dialog = AlertDialog.Builder(this)
             .setTitle("New geofencing position")
