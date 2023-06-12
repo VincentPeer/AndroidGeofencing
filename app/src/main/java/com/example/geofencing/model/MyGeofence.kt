@@ -1,3 +1,12 @@
+/**
+ * HEIV-VD DMA Geofencing project
+ * @author      : Dimitri De Bleser, Vincent Peer
+ * Date         : 12th june 2023
+ * File         : MyGeofence
+ * Description  : Data class for the local geofence object that is stored in the database.
+ */
+
+
 package com.example.geofencing.model
 
 import androidx.room.ColumnInfo

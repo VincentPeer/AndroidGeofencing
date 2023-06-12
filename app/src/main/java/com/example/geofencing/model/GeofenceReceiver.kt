@@ -1,33 +1,27 @@
+/**
+ * HEIV-VD DMA Geofencing project
+ * @author      : Dimitri De Bleser, Vincent Peer
+ * Date         : 12th june 2023
+ * File         : GeofenceReceiver
+ * Description  : GeofenceReceiver will wait to receive a specific event from the system.
+ *                  This event corresponds to the location of the system when its gps position
+ *                  entered in a registered geofence area.
+ */
+
 package com.example.geofencing.model
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.widget.Toast
 import com.google.android.gms.location.GeofencingEvent
 
 class GeofenceReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
+
+        // Get the event from its corresponding intent and generate a notification
         val geofencingEvent = GeofencingEvent.fromIntent(intent!!)
-        Toast.makeText(context, "PLACE REACHED", Toast.LENGTH_SHORT).show()
-
-        geofencingEvent?.triggeringGeofences?.forEach {
-            val notiftitle = it.requestId
-            Toast.makeText(context, "PLACE REACHED : $notiftitle", Toast.LENGTH_SHORT).show()
-            val notification = GeofenceNotification(context!!)
-            notification.createNotification(notiftitle)
-
+        geofencingEvent?.triggeringGeofences?.forEach() {
+                GeofenceNotification(context!!).createNotification(it.requestId)
         }
-
-//        if (geofencingEvent.hasError()) {
-//            val errorMessage = GeofenceErrorMessages.getErrorString(this,
-//                geofencingEvent.errorCode)
-//            // display error
-//        } else {
-//            geofencingEvent.triggeringGeofences.forEach {
-//                val geofence = it.requestId
-//                // display notification
-//            }
-//        }
     }
 }
