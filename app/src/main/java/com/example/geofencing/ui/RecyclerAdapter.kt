@@ -59,7 +59,5 @@ class RecyclerAdapter(_items : List<MyGeofence> = listOf(), private val viewMode
 
     companion object {
         private const val GEOFENCE_ALARM = 1
-        private const val CLOCK_ALARM = 2 // Example with features extension for this app
-        private const val TAG = "RecyclerAdapter"
     }
 }

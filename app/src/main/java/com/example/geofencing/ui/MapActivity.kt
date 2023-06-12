@@ -146,10 +146,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
         if (googleMap == null)
             return
 
-        // Adds marker for the user position
-        googleMap?.isMyLocationEnabled = true
-        // Adds location button to zoom on user's position
-        googleMap?.uiSettings?.isMyLocationButtonEnabled = true
+        try {
+            googleMap?.isMyLocationEnabled = true // Adds marker for the user position
+            googleMap?.uiSettings?.isMyLocationButtonEnabled = true // Adds loc button to zoom on user's position
+        } catch (e: SecurityException) {
+            Log.e("Exception: %s", e.message, e)
+        }
     }
 
 
