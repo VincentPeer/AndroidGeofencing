@@ -1,12 +1,18 @@
+/**
+ * HEIV-VD DMA Geofencing project
+ * @author      : Dimitri De Bleser, Vincent Peer
+ * Date         : 12th june 2023
+ * File         : GeofenceDatabase
+ * Description  : Allow the database to be created. Contains a singleton to the database instance.
+ */
+
 package com.example.geofencing.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.geofencing.model.MyGeofence
-import kotlin.concurrent.thread
 
 @Database(entities = [MyGeofence::class],
     version = 2,
@@ -31,22 +37,5 @@ abstract class GeofenceDatabase : RoomDatabase() {
         }
     }
 
-    private class MyDatabaseCallBack : Callback() {
-        override fun onCreate(db: SupportSQLiteDatabase) {
-            super.onCreate(db)
-            INSTANCE?.let { database ->
-                val isEmpty = database.geofenceDao().getCount().value == 0L
-                if (isEmpty) {
-                    thread {
-                        // when the database is created for the 1st time, we can, for example, populate it
-                        // should be done asynchronously
-                        val dao = database.geofenceDao()
-//                        for (i in 0..10) {
-//                            dao.insert(Geofence(null, "home", 0, 0))
-//                        }
-                    }
-                }
-            }
-        }
-    }
+    private class MyDatabaseCallBack : Callback() {}
 }

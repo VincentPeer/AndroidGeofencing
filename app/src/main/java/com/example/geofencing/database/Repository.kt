@@ -1,3 +1,12 @@
+/**
+ * HEIV-VD DMA Geofencing project
+ * @author      : Dimitri De Bleser, Vincent Peer
+ * Date         : 12th june 2023
+ * File         : repository
+ * Description  : Contains each function given by the DAO. This repository is the main entry for the
+ *                  viewModel to communicate with de database. 
+ */
+
 package com.example.geofencing.database
 
 import com.example.geofencing.model.MyGeofence
