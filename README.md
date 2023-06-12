@@ -30,3 +30,4 @@ Quelques fonctionnalités à ajouter:
 * Préciser une plage horaire durant laquelle on souhaite que le geofence lance une notification. Ceci permettrait d'éviter de notifier l'utilisateur plusieurs fois dans une journée s'il amené à faire des aller-retour dans la zone définie alors que la notification peut avoir une importance à un moment précis de la journée.  
 * Cette fonctionnalité amèneront la notion de tri de la liste des geofences dans l'ordre des alertes de la plus proche à la plus éloignée en temps.  
 * Offrir à l'utilisateur le choix du rayon du cercle dans lequel la notification va être déclenchée.
+* Ajouter des fonctionnalité à la map comme la recherche d'un lieu.
