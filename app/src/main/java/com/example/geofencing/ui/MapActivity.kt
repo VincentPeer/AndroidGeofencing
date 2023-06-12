@@ -16,10 +16,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import com.example.geofencing.GeofenceApp
 import com.example.geofencing.R
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 
 
@@ -82,10 +84,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
         googleMap?.setOnMapClickListener(this)
         googleMap?.setOnMapLongClickListener(this)
 
-
-        // Prompt the user for permission.
-        // getLocationPermission()
-        // [END_EXCLUDE]
+        // Open Google Map with location center on western Switzerland
+        val westernSwitzerlandBounds = LatLngBounds(
+            LatLng(46.257313836238836, 5.6670217498014255),  // SW bounds == Oyonnax
+            LatLng(46.75339946907581, 8.032496689679895) // NE bounds == Brienz
+        )
+        map.moveCamera(CameraUpdateFactory.newLatLngBounds(westernSwitzerlandBounds, 0))
 
         // Turn on the My Location layer and the related control on the map.
         updateLocationUI()
