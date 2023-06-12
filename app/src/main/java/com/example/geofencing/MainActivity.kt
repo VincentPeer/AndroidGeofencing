@@ -3,6 +3,7 @@ package com.example.geofencing
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageButton
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,9 +25,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         supportActionBar?.setHomeButtonEnabled(true)
 
         val recycler = binding.recycleView
+        //R.dimen.new_alarm_btn_size + (2* R.dimen.item_padding)
         val adapter = RecyclerAdapter(viewModel = geofenceViewModel)
 
         recycler.adapter = adapter

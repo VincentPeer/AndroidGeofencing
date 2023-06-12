@@ -1,4 +1,3 @@
-package com.example.geofencing.model
 /**
  * HEIV-VD DMA Geofencing project
  * @author      : Dimitri De Bleser, Vincent Peer
@@ -7,6 +6,8 @@ package com.example.geofencing.model
  * Description  : Contains functions to create a notification and a channel that we will use to
  *                  show notifications.
  */
+
+package com.example.geofencing.model
 
 
 import android.Manifest

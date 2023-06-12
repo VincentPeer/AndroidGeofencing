@@ -2,6 +2,7 @@ package com.example.geofencing.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -11,6 +12,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
@@ -37,13 +39,38 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
         )
     }
 
+    private val requestLocationPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+        val isFineLocationGranted = permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false)
+        val isCoarseLocationGranted = permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false)
 
-    private val MAPVIEW_BUNDLE_KEY = "MapViewBundleKey"
+        if (isFineLocationGranted || isCoarseLocationGranted) {
+            // Permission is granted. Continue the action
+            permissionsGranted.postValue(true)
+        }
+        else {
+            // Explain to the user that the feature is unavailable
+            Toast.makeText(this, R.string.permissions_needed_message, Toast.LENGTH_SHORT).show()
+            permissionsGranted.postValue(false)
+        }
+    }
 
+    companion object {
+        private const val TAG = "MapActivity"
+        private const val MAPVIEW_BUNDLE_KEY = "MapViewBundleKey"
+        private const val OYONNAX_LAT = 46.257313836238836
+        private const val OYONNAX_LNG = 5.6670217498014255
+        private const val BRIENZ_LAT = 46.75339946907581
+        private const val BRIENZ_LNG = 8.032496689679895
+    }
+
+
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
-        // we request permissions
+
+        // Request permissions
         requestLocationPermissionLauncher.launch(
             arrayOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
@@ -51,7 +78,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
                 Manifest.permission.POST_NOTIFICATIONS))
 
 
-        // *** IMPORTANT ***
         // MapView requires that the Bundle you pass contain _ONLY_ MapView SDK
         // objects or sub-Bundles.
         var mapViewBundle: Bundle? = null
@@ -69,14 +95,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        fin()
+        return closeMapActivity()
+    }
+    private fun closeMapActivity():Boolean {
+        finish()
         return true
     }
-    private fun fin() {
-        finish()
-    }
-
-
 
     override fun onMapReady(map: GoogleMap) {
         this.googleMap = map
@@ -84,19 +108,18 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
         googleMap?.setOnMapClickListener(this)
         googleMap?.setOnMapLongClickListener(this)
 
-        // Open Google Map with location center on western Switzerland
+        // Open Google Map with location center on specified SW and NE coordinates
         val westernSwitzerlandBounds = LatLngBounds(
-            LatLng(46.257313836238836, 5.6670217498014255),  // SW bounds == Oyonnax
-            LatLng(46.75339946907581, 8.032496689679895) // NE bounds == Brienz
+            LatLng(OYONNAX_LAT, OYONNAX_LNG),  // SW bounds
+            LatLng(BRIENZ_LAT, BRIENZ_LNG) // NE bounds
         )
         map.moveCamera(CameraUpdateFactory.newLatLngBounds(westernSwitzerlandBounds, 0))
 
-        // Turn on the My Location layer and the related control on the map.
         updateLocationUI()
-        // Get the current location of the device and set the position of the map.
-        //getDeviceLocation()
+
+
         viewModels.allGeofence.observe(this) { geofences ->
-            // Update the cached copy of the words in the adapter.
+            // Add a marker on the map
             for (geofence in geofences) {
                 map.addMarker(MarkerOptions()
                     .position(LatLng(geofence.latitude, geofence.longitude))
@@ -106,46 +129,22 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
     }
 
 
-    private val requestLocationPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-
-        val isFineLocationGranted = permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false)
-        val isCoarseLocationGranted = permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false)
-
-
-        if (isFineLocationGranted || isCoarseLocationGranted) {
-            // Permission is granted. Continue the action
-            permissionsGranted.postValue(true)
-        }
-        else {
-            // Explain to the user that the feature is unavailable
-            Toast.makeText(this, R.string.permissions_needed_message, Toast.LENGTH_SHORT).show()
-            permissionsGranted.postValue(false)
-        }
-    }
 
     /**
      * Updates the map's UI settings based on whether the user has granted location permission.
      */
-    // [START maps_current_place_update_location_ui]
     @SuppressLint("MissingPermission")
     private fun updateLocationUI() {
         if (googleMap == null) {
             return
         }
-        try {
-            if (permissionsGranted.value!!) {
-                googleMap?.isMyLocationEnabled = true // Adds marker for the user position
-                googleMap?.uiSettings?.isMyLocationButtonEnabled = true // Adds loc button to zoom on user's position
-            } else {
-                googleMap?.isMyLocationEnabled = true
-                googleMap?.uiSettings?.isMyLocationButtonEnabled = true
-                //lastKnownLocation = null
-                //getLocationPermission()
-            }
-        } catch (e: SecurityException) {
-            Log.e("Exception: %s", e.message, e)
+
+        if (permissionsGranted.value!!) {
+            googleMap?.isMyLocationEnabled = true // Adds marker for the user position
+            googleMap?.uiSettings?.isMyLocationButtonEnabled = true // Adds loc button to zoom on user's position
         }
     }
+
 
     override fun onMapClick(point: LatLng) {
         val taskEditText =  EditText(applicationContext)
@@ -167,11 +166,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapClic
         dialog.show()
 
         Log.d("MapActivity", "mapClick : $point")
-    }
-
-    companion object {
-        private const val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
-        private const val TAG = "MapActivity"
     }
 
 

@@ -1,3 +1,11 @@
+/**
+ * HEIV-VD DMA Geofencing project
+ * @author      : Dimitri De Bleser, Vincent Peer
+ * Date         : 12th june 2023
+ * File         : GeofenceViewModel
+ * Description  : Interactions between the repository and the activities.
+ */
+
 package com.example.geofencing.ui
 
 import android.Manifest
@@ -6,6 +14,8 @@ import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -20,13 +30,22 @@ import com.google.android.gms.maps.model.LatLng
 import java.util.*
 
 
+/**
+ * Manages interactions between the repository and the activities.
+ */
+@RequiresApi(Build.VERSION_CODES.S)
 class GeofenceViewModel(private val application: Application, private val repository: Repository) : ViewModel() {
     val allGeofence = repository.allGeofences
-    val counts = repository.counts
 
     private val geofencePendingIntent: PendingIntent by lazy {
         val intent = Intent(application.applicationContext, GeofenceReceiver::class.java)
         PendingIntent.getBroadcast(application.applicationContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
+    }
+
+    companion object {
+        private const val GEOFENCE_RADIUS = 100.0f // Circle radius in meter
+        private const val EXPIRATION_TIME_IN_MILLIS = 604_800_000L // One week
+        private const val NOTIFICATION_RESPONSIVENESS_TIME_IN_MILLIS = 60_0000 // 60 000 == 1 minute
     }
 
 
@@ -50,6 +69,9 @@ class GeofenceViewModel(private val application: Application, private val reposi
         repository.deleteAllGeofence()
     }
 
+    /**
+     * Instantiates a list of MyGeofence used as example
+     */
     fun initGeofenceList() {
         insertAllGeofence(listOf(
             MyGeofence(null, "HEIG-VD Cheseaux", 46.77971564252356, 6.659400234625911),
@@ -63,18 +85,15 @@ class GeofenceViewModel(private val application: Application, private val reposi
         ))
     }
 
-
-
+    /**
+     *
+     */
     fun newGeofence(title: String, latLng: LatLng) {
-        val radius = 100.0f // unit is in meter
-        val expirationTimeInMillis = 604800000L // one weed
-        val notifResponsivnessTimeInMillis = 60_0000 // 60 000 == 1 minutes
-        //geofenceList.add
         val geofence = Geofence.Builder()
             .setRequestId(title)
-            .setCircularRegion(latLng.latitude, latLng.longitude, radius)
-            .setExpirationDuration(expirationTimeInMillis)
-            .setNotificationResponsiveness(notifResponsivnessTimeInMillis)
+            .setCircularRegion(latLng.latitude, latLng.longitude, GEOFENCE_RADIUS)
+            .setExpirationDuration(EXPIRATION_TIME_IN_MILLIS)
+            .setNotificationResponsiveness(NOTIFICATION_RESPONSIVENESS_TIME_IN_MILLIS)
             .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER or Geofence.GEOFENCE_TRANSITION_EXIT)
             .build()
 
@@ -126,9 +145,5 @@ class GeofenceViewModel(private val application: Application, private val reposi
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }
-
     }
-
 }
-
-

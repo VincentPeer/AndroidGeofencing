@@ -1,3 +1,11 @@
+/**
+ * HEIV-VD DMA Geofencing project
+ * @author      : Dimitri De Bleser, Vincent Peer
+ * Date         : 12th june 2023
+ * File         : GeofenceDiffCallback
+ * Description  : Determine if two MyGeofence lists or items are equals or not.
+ */
+
 package com.example.geofencing.ui
 
 import androidx.recyclerview.widget.DiffUtil
