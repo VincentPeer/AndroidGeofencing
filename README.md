@@ -17,7 +17,10 @@ Si l'utilisateur choisi uniquement **Lorsque vous utiliser l'appli**, il n'y aur
 
 ### Utilisation de l'application
 La page d'acceuil affiche la liste des geofences ajoutés jusqu'à présent.
-![HomgePage](AppScreenshot
+![HomgePage](AppScreenshots/HomePage.jpg)
+Il est possible de supprimer un geofence existant, ou d'en ajouter un en cliquant sur l'icône d'ajout, cette action mène sur une seconde page dotée d'une carte Google Maps.  
+![MapUnzoomed](AppScreenshots/mapUnzoomed.jpg)
+
 
 ## Les notifications
 Ajout d'un geofence sur la localisation actuelle :  
