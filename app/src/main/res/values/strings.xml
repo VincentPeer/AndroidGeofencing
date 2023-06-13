@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Geofencing</string>
+    <string name="one_alarm">Alarm</string>
+    <string name="Many_alarm">Alarms</string>
+    <string name="new_alarm_description">Button to create a new alarm</string>
+    <string name="set_alarm">Set alarm</string>
+    <string name="alarm_clock_btn_text">Alarm clock</string>
+    <string name="alarm_geo_btn_text">Geofenced alarm</string>
+    <string name="alarm_choice_title_text">Select an alarm type</string>
+    <string name="geofence_icon_descr">Geofence icon</string>
+    <string name="alarm_geo_icon_descr">Alarm geo icon</string>
+    <string name="new_geofence_title">New Geofencing place</string>
+    <string name="save_text_btn">Save</string>
+    <string name="select_the_area_name">Select the area</string>
+    <string name="select_pos_btn">Select a location</string>
+    <string name="default_name">Default name</string>
+    <string name="geo_alarm_name">Geofencing alarm name</string>
+    <string name="title_activity_maps">Current Place Details</string>
+    <string name="default_info_title">Default Location</string>
+    <string name="default_info_snippet">No places found, because location permission is disabled.</string>
+    <string name="option_get_place">Get place</string>
+    <string name="pick_place">Choose a place</string>
+    <string name="tap_instructions">map tapped</string>
+    <string name="permissions_needed_message">Geofencing needs permissions</string>
+    <string name="channel_name">geofenceChannelNotification</string>
+    <string name="channel_description">Notify the user when a place is reach</string>
+    <string name="geofence_name_input">Geofence name</string>
+    <string name="done_button">Done button</string>
+</resources>

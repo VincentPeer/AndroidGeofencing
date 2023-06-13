@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="list_item_text_title">24sp</dimen>
+    <dimen name="list_item_text_size">12sp</dimen>
+
+    <dimen name="icon_list_item_size">36dp</dimen>
+    <dimen name="list_item_height">72dp</dimen>
+    <dimen name="icon_btn_item_size">48dp</dimen>
+    <dimen name="item_padding">10dp</dimen>
+    <dimen name="new_alarm_btn_size">72dp</dimen>
+    <dimen name="edit_text_width">200dp</dimen>
+    <dimen name="edit_text_standard_min_height">48dp</dimen>
+    <dimen name="pop_up_width">19dp</dimen>
+
+
+</resources>
