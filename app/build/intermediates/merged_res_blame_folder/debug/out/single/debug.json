@@ -1,0 +1,258 @@
+[
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\layout_activity_geofence.xml.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\layout\\activity_geofence.xml"
+    },
+    {
+        "merged": "com.example.geofencing.app-merged_res-47:/drawable-hdpi_done_icon.png.flat",
+        "source": "com.example.geofencing.app-main-49:/drawable-hdpi/done_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-mdpi_new_geofence_icon.png.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-mdpi\\new_geofence_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\mipmap-anydpi-v33_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\mipmap-anydpi-v33\\ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.geofencing.app-merged_res-47:/drawable-anydpi_delete_icon.xml.flat",
+        "source": "com.example.geofencing.app-main-49:/drawable-anydpi/delete_icon.xml"
+    },
+    {
+        "merged": "com.example.geofencing.app-merged_res-47:/drawable-hdpi_new_geofence_icon.png.flat",
+        "source": "com.example.geofencing.app-main-49:/drawable-hdpi/new_geofence_icon.png"
+    },
+    {
+        "merged": "com.example.geofencing.app-merged_res-47:/layout_activity_main.xml.flat",
+        "source": "com.example.geofencing.app-main-49:/layout/activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-hdpi_done_icon.png.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-hdpi\\done_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-xxhdpi_new_geofence_icon.png.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-xxhdpi\\new_geofence_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-hdpi_new_geofence_icon.png.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-hdpi\\new_geofence_icon.png"
+    },
+    {
+        "merged": "com.example.geofencing.app-merged_res-47:/drawable-mdpi_new_geofence_icon.png.flat",
+        "source": "com.example.geofencing.app-main-49:/drawable-mdpi/new_geofence_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-anydpi_location_icon.xml.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-anydpi\\location_icon.xml"
+    },
+    {
+        "merged": "com.example.geofencing.app-merged_res-47:/drawable-xhdpi_delete_icon.png.flat",
+        "source": "com.example.geofencing.app-main-49:/drawable-xhdpi/delete_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-mdpi_location_icon.png.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-mdpi\\location_icon.png"
+    },
+    {
+        "merged": "com.example.geofencing.app-merged_res-47:/drawable-xhdpi_done_icon.png.flat",
+        "source": "com.example.geofencing.app-main-49:/drawable-xhdpi/done_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable_create_alarm_icon.xml.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable\\create_alarm_icon.xml"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\layout_activity_map.xml.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\layout\\activity_map.xml"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-xxhdpi_done_icon.png.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-xxhdpi\\done_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-hdpi_location_icon.png.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-hdpi\\location_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-anydpi_done_icon.xml.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-anydpi\\done_icon.xml"
+    },
+    {
+        "merged": "com.example.geofencing.app-merged_res-47:/drawable-mdpi_delete_icon.png.flat",
+        "source": "com.example.geofencing.app-main-49:/drawable-mdpi/delete_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.geofencing.app-merged_res-47:/layout_list_item_geofence.xml.flat",
+        "source": "com.example.geofencing.app-main-49:/layout/list_item_geofence.xml"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-xhdpi_done_icon.png.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-xhdpi\\done_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-hdpi_delete_icon.png.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-hdpi\\delete_icon.png"
+    },
+    {
+        "merged": "com.example.geofencing.app-merged_res-47:/menu_map_action_menu.xml.flat",
+        "source": "com.example.geofencing.app-main-49:/menu/map_action_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-mdpi_delete_icon.png.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-mdpi\\delete_icon.png"
+    },
+    {
+        "merged": "com.example.geofencing.app-merged_res-47:/drawable-anydpi_done_icon.xml.flat",
+        "source": "com.example.geofencing.app-main-49:/drawable-anydpi/done_icon.xml"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-anydpi_delete_icon.xml.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-anydpi\\delete_icon.xml"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\menu_current_place_menu.xml.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\menu\\current_place_menu.xml"
+    },
+    {
+        "merged": "com.example.geofencing.app-merged_res-47:/drawable-xxhdpi_new_geofence_icon.png.flat",
+        "source": "com.example.geofencing.app-main-49:/drawable-xxhdpi/new_geofence_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-xhdpi_new_geofence_icon.png.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-xhdpi\\new_geofence_icon.png"
+    },
+    {
+        "merged": "com.example.geofencing.app-merged_res-47:/drawable-xxhdpi_delete_icon.png.flat",
+        "source": "com.example.geofencing.app-main-49:/drawable-xxhdpi/delete_icon.png"
+    },
+    {
+        "merged": "com.example.geofencing.app-merged_res-47:/drawable-mdpi_done_icon.png.flat",
+        "source": "com.example.geofencing.app-main-49:/drawable-mdpi/done_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-xhdpi_location_icon.png.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-xhdpi\\location_icon.png"
+    },
+    {
+        "merged": "com.example.geofencing.app-merged_res-47:/drawable-hdpi_delete_icon.png.flat",
+        "source": "com.example.geofencing.app-main-49:/drawable-hdpi/delete_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-xhdpi_delete_icon.png.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-xhdpi\\delete_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\layout_list_item_geofence.xml.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\layout\\list_item_geofence.xml"
+    },
+    {
+        "merged": "com.example.geofencing.app-merged_res-47:/drawable-xhdpi_new_geofence_icon.png.flat",
+        "source": "com.example.geofencing.app-main-49:/drawable-xhdpi/new_geofence_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-mdpi_done_icon.png.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-mdpi\\done_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\menu_map_action_menu.xml.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\menu\\map_action_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-xxhdpi_delete_icon.png.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-xxhdpi\\delete_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-xxhdpi_location_icon.png.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-xxhdpi\\location_icon.png"
+    },
+    {
+        "merged": "com.example.geofencing.app-merged_res-47:/drawable-xxhdpi_done_icon.png.flat",
+        "source": "com.example.geofencing.app-main-49:/drawable-xxhdpi/done_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable_clock_alarm_icon.png.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable\\clock_alarm_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\layout_activity_new_geofence.xml.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\layout\\activity_new_geofence.xml"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\drawable-anydpi_new_geofence_icon.xml.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\drawable-anydpi\\new_geofence_icon.xml"
+    },
+    {
+        "merged": "com.example.geofencing.app-merged_res-47:/drawable-anydpi_new_geofence_icon.xml.flat",
+        "source": "com.example.geofencing.app-main-49:/drawable-anydpi/new_geofence_icon.xml"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-merged_res-47:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\Vincent\\.gradle\\daemon\\7.5\\com.example.geofencing.app-main-49:\\mipmap-hdpi\\ic_launcher.webp"
+    }
+]
