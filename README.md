@@ -17,17 +17,26 @@ Si l'utilisateur choisi uniquement **Lorsque vous utiliser l'appli**, il n'y aur
 
 ### Utilisation de l'application
 La page d'acceuil affiche la liste des geofences ajoutés jusqu'à présent.
-![HomgePage](AppScreenshots/HomePage.jpg)
-Il est possible de supprimer un geofence existant, ou d'en ajouter un en cliquant sur l'icône d'ajout, cette action mène sur une seconde page dotée d'une carte Google Maps.  
-![MapUnzoomed](AppScreenshots/mapUnzoomed.jpg)
-
+<p align="center">
+<img src="AppScreenshots/HomePage.jpg"  width="300" height="620">
+ </p>
+Il est possible de supprimer un geofence existant, ou d'en ajouter un en cliquant sur l'icône d'ajout, cette action mène sur une seconde page munie d'une carte Google Maps.  
+<p align="center">
+<img src="AppScreenshots/mapUnzoomed.jpg"  width="300" height="620">
+ </p>
+A partir de la carte, il y a une touche en haut à gauche pour zoomer sur notre position, celle-ci fonctionne si le GPS est activé.  
+En pressant sur la carte, un pop-up apparaît pour ajouter un nouveau geofence, il suffit de lui donner un nom:  
+<p align="center">
+<img src="AppScreenshots/newGeofencePopup.jpg"  width="300" height="620">
+ </p>
 
 ## Les notifications
-Ajout d'un geofence sur la localisation actuelle :  
+### Comportements
+**Ajout d'un geofence sur la localisation actuelle :**  
 La notification se déclenche instantanément.
-Ajout d'un geofence hors de la portée actuelle puis entrée dans la zone en maintenant l'application ouverte:  
+**Ajout d'un geofence hors de la portée actuelle puis entrée dans la zone en maintenant l'application ouverte:**  
 La notification se déclenche instantanément une fois entré dans la zone.  
-Ajout d'un geofence hors de la portée actuelle, fermeture de l'application, verouillage du smartphone, puis entrée dans la zone:  
+**Ajout d'un geofence hors de la portée actuelle, fermeture de l'application, verouillage du smartphone, puis entrée dans la zone:**  
 La notificatioin peut varier entre environ 0 et 20 minutes. Il arrive qu'elle se déclenche instantanément si le smart phone était en utilisation récemment. 
 Si le smartphone est resté un certain temps en veille, cela prend en général 10 à 15 minutes pour déclencher l'alarme.  
 
@@ -35,7 +44,9 @@ Si le smartphone est resté un certain temps en veille, cela prend en général 
 * En passant dans deux zones geofence l'une après l'autre après le smartphone en veille, il peut arriver que les deux notifications surviennent au même moment lorsqu'on se trouve dans la seconde zone. 
 * En ouvrant l'application et la map, si la dernière position calculée était dans une zone, il arrive qu'une notification se déclenche même si l'on est sorti de la zone.
 
-
+<p align="center">
+<img src="AppScreenshots/channelNotifp.jpg"  width="300" height="620">
+ </p>
 ## Détail d'implémentation
 Le rayon dans lequel est déclenché la notification est de 100 mètres.
 Le temps de validité d'une notification et d'une semaine, après ce délai le système notre requête qui avait pour but de nous indiquer l'entrée dans la zone géographique.
