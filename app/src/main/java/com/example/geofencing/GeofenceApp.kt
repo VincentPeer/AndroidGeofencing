@@ -1,3 +1,11 @@
+/**
+ * HEIV-VD DMA Geofencing project
+ * @author      : Dimitri De Bleser, Vincent Peer
+ * Date         : 12th june 2023
+ * File         : GeofenceApp
+ * Description  : Application that instantiates the repository
+ */
+
 package com.example.geofencing
 
 import android.app.Application

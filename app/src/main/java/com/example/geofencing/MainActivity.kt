@@ -1,3 +1,11 @@
+/**
+ * HEIV-VD DMA Geofencing project
+ * @author      : Dimitri De Bleser, Vincent Peer
+ * Date         : 12th june 2023
+ * File         : MainActivity
+ * Description  : Manages the home page, its interaction with the user and the start of the map activity
+ */
+
 package com.example.geofencing
 
 import android.content.Intent
@@ -24,21 +32,24 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.setHomeButtonEnabled(true)
 
+        // Initialize the recyclerView and its adapter
         val recycler = binding.recycleView
         val adapter = RecyclerAdapter(viewModel = geofenceViewModel)
-
         recycler.adapter = adapter
         recycler.layoutManager = LinearLayoutManager(this)
 
-
+        // Observe geofence items to maintain the list up to date
         geofenceViewModel.allGeofence.observe(this) {
             adapter.items = it
         }
 
+        // New geofence button that start the MapActivity
         binding.addGeofenceBtn.setOnClickListener {
             startActivity(Intent(this, MapActivity::class.java))
         }
 
+        // On addGeonfenceBtn long press, add some examples of items in the list
+        // These items won't be send to the system for notifications
         binding.addGeofenceBtn.setOnLongClickListener {
             geofenceViewModel.initGeofenceList()
             true

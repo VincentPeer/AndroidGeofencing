@@ -1,3 +1,11 @@
+/**
+ * HEIV-VD DMA Geofencing project
+ * @author      : Dimitri De Bleser, Vincent Peer
+ * Date         : 12th june 2023
+ * File         : RecyclerAdapter
+ * Description  : Manages the RecyclerView and its item
+ */
+
 package com.example.geofencing.ui
 
 import android.view.LayoutInflater
@@ -13,7 +21,6 @@ import com.example.geofencing.model.MyGeofence
 import com.google.android.gms.maps.model.LatLng
 
 class RecyclerAdapter(_items : List<MyGeofence> = listOf(), private val viewModel: GeofenceViewModel) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>()  {
-
     var items = listOf<MyGeofence>()
         set(value) {
             val diffCallback = GeofenceDiffCallback(items, value)

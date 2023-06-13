@@ -71,7 +71,8 @@ class GeofenceViewModel(private val application: Application, private val reposi
     }
 
     /**
-     * Instantiates a list of MyGeofence used as example
+     * Instantiates a list of MyGeofence used as example for the reyclerView but not sent to the
+     * system for notifications
      */
     fun initGeofenceList() {
         insertAllGeofence(listOf(
