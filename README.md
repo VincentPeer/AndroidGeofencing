@@ -5,7 +5,8 @@ Ce projet met en service une application Android permettant de définir une posi
 
 ## Guide d'utilisation
 ### Configuration requise
-Cette application requiert que le système sur lequel elle s'installe dispose de la géolocalisation.
+* Cette application requiert que le système sur lequel elle s'installe dispose de la géolocalisation.  
+* Il est nécessaire de posséder une clé API Google Maps a indiqué dans le fichier local.properties sous la forme: MAPS_API_KEY=KEY_VALUE où KEY_VALUE est à remplacer par la valeur de la clé.
 ### Les permissions
 Lors de l'ouverture de la page contenant Google Maps pour la première fois, une demande de permission pour l'accès à la position exacte ou approximative est demandée et propose trois choix :
 *  Lorsque vous utilisez l'appli
